@@ -38,7 +38,10 @@ class TicTacToe
   # Checks if there is a winner with 3 letters in a row
   #
   # @param [Array] board
+  #   the current playing board
+  #
   # @param [String] letter
+  #   the letter being played
   #
   # @return [Boolean]
   def winner?(board, letter)
@@ -65,6 +68,7 @@ class TicTacToe
   # Checks if the board is full
   #
   # @param [Array] board
+  #   the current playing board
   # 
   # @return [Boolean]
   #   true if the board is full or false if it is not
@@ -80,8 +84,10 @@ class TicTacToe
   # move (since those are the best), then the center, then a side.
   #
   # @param [Array] board
+  #   the current playing board
   #
   # @param [String] computer_letter
+  #  the computer's letter
   #
   # @return [Integer]
   #  the computer's next move
@@ -133,7 +139,8 @@ class TicTacToe
   ##
   # Duplicates the playing board to test out computer's moves
   #
-  # @params [Array] board
+  # @param [Array] board
+  #   the current playing board
   #
   # return [Array]
   #   the board duplicated
@@ -145,6 +152,7 @@ class TicTacToe
   # If the computer can't win, choose a random move if it is available
   #
   # @param [Array] board
+  #   the current playing board
   #
   # @param [Array] list_of_moves
   #  a list of possible moves
