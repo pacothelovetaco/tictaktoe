@@ -1,6 +1,6 @@
 class TicTacToe
 
-  BOARD_RANGE = 1..9
+  BOARD_RANGE = 0..8
 
   ##
   # Places a move on the board
@@ -82,9 +82,8 @@ class TicTacToe
   # The computer will attempt to first try to win. Next, it will
   # try to block the player. If both fail, then it will check to see
   # where the player has moved and attempt to take a corner or 
-  # the center accordingly.
-  #
-  # See http://www.wikihow.com/Win-at-Tic-Tac-Toe for more.
+  # the center accordingly. See http://www.wikihow.com/Win-at-Tic-Tac-Toe 
+  # for more.
   #
   # @param [Array] board
   #   the current playing board
@@ -102,7 +101,7 @@ class TicTacToe
       player_letter = 'X'
     end
     
-    # First, check if the computer can in the next move
+    # First, check if the computer can win in the next move
     (BOARD_RANGE).each do |i|
       copy = copy_board(board)
       if space_available?(copy, i)
@@ -137,10 +136,12 @@ class TicTacToe
     if board[0] == player_letter ||
       board[2] == player_letter ||
       board[6] == player_letter ||
-      board[9] == player_letter
+      board[8] == player_letter
 
       if space_available?(board, 4)
         return 4
+      else
+        return choose_random_move(board, [1, 3, 5, 7])
       end
     end
 
@@ -161,7 +162,7 @@ class TicTacToe
   end
 
   ##
-  # Duplicates the playing board to test out computer's moves
+  # Duplicates the playing board to test next moves
   #
   # @param [Array] board
   #   the current playing board
