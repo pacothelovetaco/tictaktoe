@@ -80,8 +80,11 @@ class TicTacToe
   # The brains for the computer
   #
   # The computer will attempt to first try to win. Next, it will
-  # try to block the player. Lastly, it will attempt to take a corner
-  # move (since those are the best), then the center, then a side.
+  # try to block the player. If both fail, then it will check to see
+  # where the player has moved and attempt to take a corner or 
+  # the center accordingly.
+  #
+  # See http://www.wikihow.com/Win-at-Tic-Tac-Toe for more.
   #
   # @param [Array] board
   #   the current playing board
@@ -121,15 +124,36 @@ class TicTacToe
       end
     end
     
-    # Attempt to take one of the corners
+    # Check to see if the player has made a strategic move.
+    # If player chose center, take a corner
+    if board[4] == player_letter
+      move = choose_random_move(board, [0, 2, 6, 8])
+      if move != nil
+        return move
+      end
+    end
+
+    # If player chose corner, take the center
+    if board[0] == player_letter ||
+      board[2] == player_letter ||
+      board[6] == player_letter ||
+      board[9] == player_letter
+
+      if space_available?(board, 4)
+        return 4
+      end
+    end
+
+    # ...else, the computer will make a strategic move.
+    # Take corner first
     move = choose_random_move(board, [0, 2, 6, 8])
     if move != nil
       return move
     end
     
-    # Attempt to take the center
+    # Take center
     if space_available?(board, 4)
-      return 5
+      return 4
     end
     
     # All else fails, take a side
